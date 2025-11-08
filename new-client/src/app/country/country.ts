@@ -3,18 +3,19 @@ import { CountryData } from './country-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-country',
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './country.html',
   styleUrl: './country.css'
 })
 export class Country {
-  countries: CountryData[] = [];
-  constructor(http: HttpClient) {
-    http.get<CountryData[]>(environment.apiUrl + "api/Countries/").subscribe(result => {
-      this.countries = result;
-    })
+  countries$: Observable<CountryData[]>;
+  
+  constructor(private http: HttpClient) {
+    this.countries$ = this.http.get<CountryData[]>(environment.apiUrl + "api/Countries/");
   }
 }
