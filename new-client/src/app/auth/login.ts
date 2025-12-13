@@ -34,7 +34,5 @@ export class Login implements OnInit {
         console.error("Error" + result);
       }
     });
-    
   }
-
 }

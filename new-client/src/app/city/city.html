@@ -1,1 +1,22 @@
-<p>city works!</p>
+<h1>Cities</h1>
+<table class="table table-striped">
+    <thead>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Country ID</td>
+        <td>Latitude</td>
+        <td>Longitude</td>
+    </thead>
+
+    <tbody>
+            @for (city of (cities$ | async); track $index) {
+            <tr>
+                <td><a routerLink="/city/{{city.id}}">{{city.id}}</a></td>
+                <td>{{city.name}}</td>
+                <td>{{city.countryId}}</td>
+                <td>{{city.latitude}}</td>
+                <td>{{city.longitude}}</td>
+            </tr>
+        }
+        </tbody>
+</table>
